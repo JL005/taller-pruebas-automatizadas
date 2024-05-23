@@ -1,6 +1,6 @@
 package co.com.udea.certificacion.autenticacion.tasks;
 
-import co.com.udea.certificacion.autenticacion.interactions.GetPaymentMethod;
+import co.com.udea.certificacion.autenticacion.userinterfaces.GetPaymentMethod;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.annotations.Subject;
