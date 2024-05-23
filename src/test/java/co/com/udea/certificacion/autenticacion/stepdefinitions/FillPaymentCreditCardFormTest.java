@@ -28,7 +28,7 @@ public class FillPaymentCreditCardFormTest {
     WebDriver driver;
 
     private Actor user;
-    private static final String URL = "http://localhost:3000/modulo-pagos-a";
+    
 
     @Before
     public void setUp() {

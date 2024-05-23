@@ -3,9 +3,8 @@ package co.com.udea.certificacion.autenticacion.tasks;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Enter;
-import co.com.udea.certificacion.autenticacion.interactions.PaymentFormPage;
 import co.com.udea.certificacion.autenticacion.models.PaymentDetails;
-
+import co.com.udea.certificacion.autenticacion.userinterfaces.PaymentFormPage;
 
 
 public class FillPaymentForm implements Task {

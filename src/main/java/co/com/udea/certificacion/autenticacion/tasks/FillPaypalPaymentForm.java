@@ -3,9 +3,8 @@ package co.com.udea.certificacion.autenticacion.tasks;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Enter;
-
-import co.com.udea.certificacion.autenticacion.interactions.PaypalFormPage;
 import co.com.udea.certificacion.autenticacion.models.PaypalPaymentDetails;
+import co.com.udea.certificacion.autenticacion.userinterfaces.PaypalFormPage;
 
 public class FillPaypalPaymentForm implements Task {
     private final PaypalPaymentDetails paymentDetails;
