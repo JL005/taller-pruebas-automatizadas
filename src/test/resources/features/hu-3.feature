@@ -1,12 +1,7 @@
-Feature: Ingresar datos del método de pago
+Feature: Ingresar datos del metodo de pago
 
-  Scenario: Verificar formulario de ingreso de datos del método de pago
-    Given que soy un cliente que está realizando un pago
-    When llego al paso de ingresar los datos del método de pago
-    Then debería ver un formulario para ingresar los datos del método de pago
+  Scenario: Verificar formulario de ingreso de datos del metodo de pago
+    Given que soy un cliente que esta realizando un pago
+    When llego al paso de ingresar los datos del metodo de pago
+    Then deberia ver un formulario para ingresar los datos del metodo de pago
 
-    Scenario: Ingresar datos válidos del método de pago
-    Given que soy un cliente que está realizando un pago
-    And he llegado al paso de ingresar los datos del método de pago
-    When ingreso datos válidos del método de pago
-    Then debería ver la confirmación de los datos ingresados
