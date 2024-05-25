@@ -1,7 +1,7 @@
 Feature: Seleccion de multiples metodos de pago
 
   Scenario: Verificar disponibilidad de multiples metodos de pago
-    Given que soy un cliente que esta realizando una transaccion
+    Given que soy un cliente que esta realizando una transaccions
     When llego al paso de seleccion de metodo de pago
     Then deberia ver al menos dos opciones de metodos de pago disponibles
 
