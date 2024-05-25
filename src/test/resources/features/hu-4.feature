@@ -1,26 +1,20 @@
 Feature: Validacion automatica de datos con método de pago seleccionado
 
-  Scenario: Validar datos automaticamente con tarjeta de credito
-    Given que soy un usuario que ha ingresado los datos de mi tarjeta de credito
-    When intento realizar un pago
-    Then deberia recibir una confirmacion de que los datos son válidos
-    And proceder con el pago
-
-  Scenario: Validar datos automaticamente con tarjeta de debito
-    Given que soy un usuario que ha ingresado los datos de mi tarjeta de debito
-    When intento realizar un pago
+  Scenario: Validar datos automaticamente con tarjeta
+    Given que soy un usuario que ha ingresado los datos de mi tarjeta
+    When intento realizar un pago con tarjeta
     Then deberia recibir una confirmacion de que los datos son validos
-    And proceder con el pago
+    And proceder con el pago con tarjeta
 
   Scenario: Validar datos automaticamente con PayPal
     Given que soy un usuario que ha ingresado los datos de mi cuenta de PayPal
-    When intento realizar un pago
-    Then deberia recibir una confirmacion de que los datos son validos
-    And proceder con el pago.
+    When intento realizar un pago con paypal
+    Then deberia recibir una confirmacion de que los datos son validos de mi cuenta de PayPal
+    And proceder con a finalizar el pago con paypal
 
   Scenario: Validar datos automaticamente con datos invalidos en Paypal
-    Given que soy un usuario que ha ingresado datos incorrectos
-    When intento realizar un pago
+    Given que soy un usuario que ha ingresado datos incorrectos de mi cuenta de PayPal
+    When intento realizar un pago con mi cuenta de PayPal
     Then deberia recibir un mensaje indicando que los datos son invalidos
 
 

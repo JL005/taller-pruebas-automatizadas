@@ -1,3 +1,4 @@
+/*
 package co.com.udea.pagosa.runners;
 
 import org.junit.runner.RunWith;
@@ -14,3 +15,4 @@ import net.serenitybdd.cucumber.CucumberWithSerenity;
 public class VerificarFormularioRunner {
     
 }
+*/

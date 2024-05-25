@@ -1,4 +1,3 @@
-/*
 package co.com.udea.pagosa.runners;
 
 import org.junit.runner.RunWith;
@@ -8,11 +7,10 @@ import net.serenitybdd.cucumber.CucumberWithSerenity;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        features = "src/test/resources/features/hu-2.feature",
-        glue = "co.com.udea.pagosa.stepdefinitions.metodospago",
+        features = "src/test/resources/features/hu-4.feature",
+        glue = "co.com.udea.pagosa.stepdefinitions.realizarpagos",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
-public class MetodoPagoReservaRunner {
+public class RealizarPagosRunner {
     
 }
-*/
