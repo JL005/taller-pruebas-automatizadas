@@ -8,6 +8,7 @@ import co.com.udea.pagosa.tasks.AbrirNavegador;
 import co.com.udea.pagosa.tasks.metodospago.SeleccionarMetodoPago;
 import co.com.udea.pagosa.tasks.realizarpagos.LlenarFormularioPagoPaypal;
 import co.com.udea.pagosa.tasks.reservas.SeleccionarReserva;
+import co.com.udea.pagosa.userinterfaces.formularioPagos.FormularioPagoPaypal;
 import co.com.udea.pagosa.userinterfaces.reservas.CargarReserva;
 import co.com.udea.pagosa.utils.Constantes;
 import io.cucumber.java.Before;
@@ -35,7 +36,6 @@ public class FalloPagoPaypalStepDefinition {
 
     @Given("que soy un usuario que ha ingresado datos incorrectos de mi cuenta de PayPal")
     public void queSoyUnUsuarioQueHaIngresadoDatosIncorrectosDeMiCuentaDePayPal() {
-        // Write code here that turns the phrase above into concrete actions
         this.usuario.attemptsTo(AbrirNavegador.at(Constantes.URL),
                 SeleccionarReserva.as("20-booking"),
                 Click.on(CargarReserva.BOTON_SIGUIENTE),
@@ -46,13 +46,14 @@ public class FalloPagoPaypalStepDefinition {
 
     @When("intento realizar un pago con mi cuenta de PayPal")
     public void intentoRealizarUnPagoConMiCuentaDePayPal() {
-        this.usuario.attemptsTo(Click.on(CargarReserva.BOTON_SIGUIENTE),
+        this.usuario.attemptsTo(Click.on(FormularioPagoPaypal.BOTON_PAGO),
                 VerificarSiElementoExiste.conCampos("payment-processing"));
-
     }
 
     @Then("deberia recibir un mensaje indicando que los datos son invalidos")
-    public void deberiaRecibirUnMensajeIndicandoQueLosDatosSonInvalidos() {
+    public void deberiaRecibirUnMensajeIndicandoQueLosDatosSonInvalidos() throws InterruptedException{
+        Thread.sleep(4000);
         this.usuario.attemptsTo(VerificarSiElementoExiste.conCampos("payment-error"));
+        Thread.sleep(4000);
     }
 }

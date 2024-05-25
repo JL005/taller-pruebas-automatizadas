@@ -4,13 +4,14 @@ import org.openqa.selenium.WebDriver;
 
 import co.com.udea.pagosa.models.DetallesCuentaPaypal;
 import co.com.udea.pagosa.tasks.AbrirNavegador;
+import co.com.udea.pagosa.tasks.formulariopagos.VerificarSiElementoExiste;
 import co.com.udea.pagosa.tasks.metodospago.SeleccionarMetodoPago;
 import co.com.udea.pagosa.tasks.realizarpagos.LlenarFormularioPagoPaypal;
 import co.com.udea.pagosa.tasks.reservas.SeleccionarReserva;
+import co.com.udea.pagosa.userinterfaces.formularioPagos.FormularioPagoPaypal;
 import co.com.udea.pagosa.userinterfaces.reservas.CargarReserva;
 import co.com.udea.pagosa.utils.Constantes;
 import io.cucumber.java.Before;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -33,8 +34,8 @@ public class RealizarPagoPaypalStepDefinition {
         this.usuario.can(BrowseTheWeb.with(this.driver));
     }
 
-    @Given("que soy un usuario que ha ingresado los datos de mi cuenta de PayPal")
-    public void queSoyUnUsuarioQueHaIngresadoLosDatosDeMiCuentaDePayPal() {
+    @Given("que soy un usuario que ha ingresado los datos correctos de mi cuenta de PayPal")
+    public void queSoyUnUsuarioQueHaIngresadoLosDatosCorrectosDeMiCuentaDePayPal() {
         this.usuario.attemptsTo(AbrirNavegador.at(Constantes.URL),
                 SeleccionarReserva.as("20-booking"),
                 Click.on(CargarReserva.BOTON_SIGUIENTE), 
@@ -46,18 +47,15 @@ public class RealizarPagoPaypalStepDefinition {
 
     @When("intento realizar un pago con paypal")
     public void intentoRealizarUnPagoConPaypal() {
-        // this.usuario.attemptsTo(Click.on(CargarReserva.BOTON_SIGUIENTE));
-        System.out.println("FALTA IMPLEMENTAR");
+        this.usuario.attemptsTo(Click.on(FormularioPagoPaypal.BOTON_PAGO),
+                VerificarSiElementoExiste.conCampos("payment-processing"));
     }
 
-    @Then("deberia recibir una confirmacion de que los datos son validos de mi cuenta de PayPal")
-    public void deberiaRecibirUnaConfirmacionDeQueLosDatosSonValidosDeMiCuentaDePayPal() {
-        System.out.println("FALTA IMPLEMENTAR");
-    }
-
-    @And("proceder con a finalizar el pago con paypal")
-    public void procederConElPago() {
-        System.out.println("FALTA IMPLEMENTAR");
+    @Then("deberia proceder a finalizar el pago con paypal")
+    public void deberiaProcederAFinalizarElPagoConPaypal() throws InterruptedException {
+        Thread.sleep(4000);
+        this.usuario.attemptsTo(VerificarSiElementoExiste.conCampos("payment-success"));
+        Thread.sleep(10000);
     }
 
 }

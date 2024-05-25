@@ -4,13 +4,14 @@ import org.openqa.selenium.WebDriver;
 
 import co.com.udea.pagosa.models.DetallesPagoTarjeta;
 import co.com.udea.pagosa.tasks.AbrirNavegador;
+import co.com.udea.pagosa.tasks.formulariopagos.VerificarSiElementoExiste;
 import co.com.udea.pagosa.tasks.metodospago.SeleccionarMetodoPago;
 import co.com.udea.pagosa.tasks.realizarpagos.LlenarFormularioPagoTarjeta;
 import co.com.udea.pagosa.tasks.reservas.SeleccionarReserva;
+import co.com.udea.pagosa.userinterfaces.formularioPagos.FormularioPagoTarjeta;
 import co.com.udea.pagosa.userinterfaces.reservas.CargarReserva;
 import co.com.udea.pagosa.utils.Constantes;
 import io.cucumber.java.Before;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -26,7 +27,7 @@ public class RealizarPagoTarjetaStepDefinition {
 
     private final Actor usuario = Actor.named("Usuario");
     
-    private final DetallesPagoTarjeta detallesPago = new DetallesPagoTarjeta("1234567890123456", "12/24", "123", "John Doe", "123456789");
+    private final DetallesPagoTarjeta detallesPago = new DetallesPagoTarjeta("378282246310005", "12/24", "123", "John Doe", "123456789");
 
     @Before
     public void setUp() {
@@ -42,17 +43,16 @@ public class RealizarPagoTarjetaStepDefinition {
                 Click.on(CargarReserva.BOTON_SIGUIENTE),
                 LlenarFormularioPagoTarjeta.conInfo(detallesPago));
     }
+
     @When("intento realizar un pago con tarjeta")
     public void intentoRealizarUnPagoConTarjeta() {
-        System.out.println("FALTA IMPLEMENTAR");
-    }
-    @Then("deberia recibir una confirmacion de que los datos son validos")
-    public void deberiaRecibirUnaConfirmacionDeQueLosDatosSonValidos() {
-        System.out.println("FALTA IMPLEMENTAR");
+        this.usuario.attemptsTo(Click.on(FormularioPagoTarjeta.BOTON_PAGAR));
     }
 
-    @And("proceder con el pago con tarjeta")
-    public void procederConElPagoConTarjeta() {
-        System.out.println("FALTA IMPLEMENTAR");
+    @Then("deberia proceder con el pago con tarjeta")
+    public void deberiaProcederConElPagoConTarjeta() throws InterruptedException {
+        Thread.sleep(4000);
+        this.usuario.attemptsTo(VerificarSiElementoExiste.conCampos("payment-success"));
+        Thread.sleep(10000);
     }
 }
