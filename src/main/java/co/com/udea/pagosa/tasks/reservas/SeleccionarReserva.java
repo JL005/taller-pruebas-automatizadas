@@ -1,4 +1,4 @@
-package co.com.udea.pagosa.tasks;
+package co.com.udea.pagosa.tasks.reservas;
 
 import co.com.udea.pagosa.userinterfaces.reservas.CargarReserva;
 import net.serenitybdd.screenplay.Actor;

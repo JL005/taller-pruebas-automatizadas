@@ -3,7 +3,7 @@ package co.com.udea.pagosa.stepdefinitions.reservas;
 import org.openqa.selenium.WebDriver;
 
 import co.com.udea.pagosa.tasks.AbrirNavegador;
-import co.com.udea.pagosa.tasks.SeleccionarReserva;
+import co.com.udea.pagosa.tasks.reservas.SeleccionarReserva;
 import co.com.udea.pagosa.tasks.reservas.VerificarFechaReservaPrecioSinImpuestos;
 import co.com.udea.pagosa.tasks.reservas.VerificarImpuestosPrecioTotal;
 import co.com.udea.pagosa.userinterfaces.reservas.CargarReserva;
@@ -25,35 +25,35 @@ public class VisualizacionTarifaReservaStepDefinition {
     @Managed(driver = "chrome", uniqueSession = true)
     WebDriver driver;
 
-    private final Actor user = Actor.named("Usuario");
+    private final Actor usuario = Actor.named("Usuario");
 
     @Before
     public void setUp() {
         setTheStage(new OnlineCast());
-        user.can(BrowseTheWeb.with(this.driver));
+        usuario.can(BrowseTheWeb.with(this.driver));
     }
 
     @Given("que soy un cliente que ha realizado unas reservas")
     public void queSoyUnClienteQueHaRealizadoUnasReservas() {
-        this.user.attemptsTo(AbrirNavegador.at(Constantes.URL));
+        this.usuario.attemptsTo(AbrirNavegador.at(Constantes.URL));
     }
 
     @When("accedo a la seccion de detalles de la reserva")
     public void accedoALaSeccionDeDetallesDeLaReserva() {
-        this.user.attemptsTo(
+        this.usuario.attemptsTo(
                 SeleccionarReserva.as("10-booking"),
                 Click.on(CargarReserva.BOTON_SIGUIENTE));
     }
 
     @Then("deberia ver la tarifa de la reserva")
     public void deberiaVerLaTarifaDeLaReserva() {
-        this.user.attemptsTo(
+        this.usuario.attemptsTo(
                 VerificarFechaReservaPrecioSinImpuestos.con("12/5/2023", "$330,000"));
     }
 
     @And("deberia ver los impuestos aplicados")
     public void deberiaVerLosImpuestosAplicados() {
-        this.user.attemptsTo(
+        this.usuario.attemptsTo(
                 VerificarImpuestosPrecioTotal.con("$392,700","$62,700"));
 
     }
