@@ -1,6 +1,6 @@
-package co.com.udea.certificacion.autenticacion.utils;
+package co.com.udea.pagosa.utils;
 
-public class Constants {
+public class Constantes {
 
     public static final String URL = "https://modulo-pagos-a.vercel.app/modulo-pagos-a";
 }

@@ -1,19 +1,19 @@
-package co.com.udea.certificacion.autenticacion.tasks;
+package co.com.udea.pagosa.tasks;
 
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Open;
 
-public class OpenThePage implements Task {
+public class AbrirNavegador implements Task {
 
     private final String url;
 
-    public OpenThePage(String url) {
+    public AbrirNavegador(String url) {
         this.url = url;
     }
 
-    public static OpenThePage at(String url) {
-        return new OpenThePage(url);
+    public static AbrirNavegador at(String url) {
+        return new AbrirNavegador(url);
     }
 
     @Override

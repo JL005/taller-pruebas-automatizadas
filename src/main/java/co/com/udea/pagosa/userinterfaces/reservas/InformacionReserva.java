@@ -1,9 +1,9 @@
-package co.com.udea.certificacion.autenticacion.userinterfaces;
+package co.com.udea.pagosa.userinterfaces.reservas;
 
 import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
 
-public class BookingInfoPage {
+public class InformacionReserva {
         public static final Target FECHA_RESERVA = Target.the("example span")
             .located(By.id("booking-date"));
         public static final Target PRECIO_SIN_IMPUESTOS = Target.the("example span")
