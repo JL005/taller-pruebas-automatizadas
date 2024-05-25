@@ -17,7 +17,7 @@ import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
 import co.com.udea.pagosa.tasks.formulariopagos.VerificarFormularioTarjetaExiste;
 
-public class VerificarFormularioTarjetaStepDefinition {
+public class VerificarFormularioPaypalStepDefinition {
 
     @Managed(driver = "chrome", uniqueSession = true)
     WebDriver driver;
@@ -29,21 +29,22 @@ public class VerificarFormularioTarjetaStepDefinition {
         this.usuario.can(BrowseTheWeb.with(this.driver));
     }
 
-    @Given("que soy un cliente que esta realizando un pago con tarjeta")
-    public void queSoyUnClienteQueEstaRealizandoUnPagoConTarjeta() {
+    @Given("que soy un cliente que esta realizando un pago con paypal")
+    public void queSoyUnClienteQueEstaRealizandoUnPagoConPaypal() {
         this.usuario.attemptsTo(AbrirNavegador.at(Constantes.URL),
                 SeleccionarReserva.as("20-booking"),
                 Click.on(CargarReserva.BOTON_SIGUIENTE));
     }
 
-    @When("llego al paso de ingresar los datos del metodo de pago")
-    public void llegoAlPasoDeIngresarLosDatosDelMetodoDePago() {
-        this.usuario.attemptsTo(SeleccionarMetodoPago.as("0-tarjeta"),
+    @When("llego al paso de ingresar los datos de la cuenta de paypal")
+    public void llegoAlPasoDeIngresarLosDatosDeLaCuentaDePaypal() {
+        this.usuario.attemptsTo(SeleccionarMetodoPago.as("2-paypal"),
                 Click.on(CargarReserva.BOTON_SIGUIENTE));
     }
 
-    @Then("deberia ver un formulario para ingresar los datos del metodo de pago")
-    public void deberiaVerUnFormularioParaIngresarLosDatosDelMetodoDePago() {
-        this.usuario.attemptsTo(VerificarFormularioTarjetaExiste.conCampos("debitcard", "date", "ccv", "name", "id"));
+    @Then("deberia ver un formulario para ingresar los datos de usuario y contrasena de paypal")
+    public void deberiaVerUnFormularioParaIngresarLosDatosDeUsuarioYContrasenaDePaypal() {
+        this.usuario.attemptsTo(VerificarFormularioTarjetaExiste.conCampos("email", "password"));
     }
+
 }
