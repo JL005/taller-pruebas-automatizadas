@@ -11,16 +11,16 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.questions.WebElementQuestion;
 
-public class VerificarFormularioTarjetaExiste implements Task {
+public class VerificarSiElementoExiste implements Task {
 
     private final List<String> camposFormulario;
 
-    public VerificarFormularioTarjetaExiste(List<String> camposFormulario) {
+    public VerificarSiElementoExiste(List<String> camposFormulario) {
         this.camposFormulario = camposFormulario;
     }
 
-    public static VerificarFormularioTarjetaExiste conCampos(String... fieldIds) {
-        return new VerificarFormularioTarjetaExiste(Arrays.asList(fieldIds));
+    public static VerificarSiElementoExiste conCampos(String... fieldIds) {
+        return new VerificarSiElementoExiste(Arrays.asList(fieldIds));
     }
 
     @Override

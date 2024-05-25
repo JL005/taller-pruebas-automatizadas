@@ -1,5 +1,6 @@
 package co.com.udea.pagosa.stepdefinitions.realizarpagos;
 
+import co.com.udea.pagosa.tasks.formulariopagos.VerificarSiElementoExiste;
 import org.openqa.selenium.WebDriver;
 
 import co.com.udea.pagosa.models.DetallesCuentaPaypal;
@@ -45,13 +46,13 @@ public class FalloPagoPaypalStepDefinition {
 
     @When("intento realizar un pago con mi cuenta de PayPal")
     public void intentoRealizarUnPagoConMiCuentaDePayPal() {
-        // Write code here that turns the phrase above into concrete actions
-        System.out.println("FALTA IMPLEMENTAR");
+        this.usuario.attemptsTo(Click.on(CargarReserva.BOTON_SIGUIENTE),
+                VerificarSiElementoExiste.conCampos("payment-processing"));
+
     }
 
     @Then("deberia recibir un mensaje indicando que los datos son invalidos")
     public void deberiaRecibirUnMensajeIndicandoQueLosDatosSonInvalidos() {
-        // Write code here that turns the phrase above into concrete actions
-        System.out.println("FALTA IMPLEMENTAR");
+        this.usuario.attemptsTo(VerificarSiElementoExiste.conCampos("payment-error"));
     }
 }

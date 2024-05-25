@@ -15,7 +15,7 @@ import net.serenitybdd.annotations.Managed;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
-import co.com.udea.pagosa.tasks.formulariopagos.VerificarFormularioTarjetaExiste;
+import co.com.udea.pagosa.tasks.formulariopagos.VerificarSiElementoExiste;
 
 public class VerificarFormularioTarjetaStepDefinition {
 
@@ -44,6 +44,6 @@ public class VerificarFormularioTarjetaStepDefinition {
 
     @Then("deberia ver un formulario para ingresar los datos del metodo de pago")
     public void deberiaVerUnFormularioParaIngresarLosDatosDelMetodoDePago() {
-        this.usuario.attemptsTo(VerificarFormularioTarjetaExiste.conCampos("debitcard", "date", "ccv", "name", "id"));
+        this.usuario.attemptsTo(VerificarSiElementoExiste.conCampos("debitcard", "date", "ccv", "name", "id"));
     }
 }

@@ -15,7 +15,7 @@ import net.serenitybdd.annotations.Managed;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
-import co.com.udea.pagosa.tasks.formulariopagos.VerificarFormularioTarjetaExiste;
+import co.com.udea.pagosa.tasks.formulariopagos.VerificarSiElementoExiste;
 
 public class VerificarFormularioPaypalStepDefinition {
 
@@ -44,7 +44,7 @@ public class VerificarFormularioPaypalStepDefinition {
 
     @Then("deberia ver un formulario para ingresar los datos de usuario y contrasena de paypal")
     public void deberiaVerUnFormularioParaIngresarLosDatosDeUsuarioYContrasenaDePaypal() {
-        this.usuario.attemptsTo(VerificarFormularioTarjetaExiste.conCampos("email", "password"));
+        this.usuario.attemptsTo(VerificarSiElementoExiste.conCampos("email", "password"));
     }
 
 }
