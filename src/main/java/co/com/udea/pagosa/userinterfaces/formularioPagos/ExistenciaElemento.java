@@ -4,6 +4,6 @@ import net.serenitybdd.screenplay.targets.Target;
 
 public class ExistenciaElemento {
         public static Target byId(String id) {
-                return Target.the("Element with ID " + id).locatedBy("#" + id);
+                return Target.the("Elemento con id " + id).locatedBy("#" + id);
         }
 }
