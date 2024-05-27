@@ -15,7 +15,7 @@ import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import static net.serenitybdd.screenplay.actors.OnStage.setTheStage;
 
-public class VisualizacionErrorTarifaReservaStepDefinition {
+public class S2VisualizacionErrorTarifaReservaStepDefinition {
 
     @Managed(driver = "chrome", uniqueSession = true)
     WebDriver driver;
@@ -29,18 +29,21 @@ public class VisualizacionErrorTarifaReservaStepDefinition {
     }
 
     @Given("que soy un cliente que ha realizado una reserva")
-    public void queSoyUnClienteQueHaRealizadoUnaReserva() {
+    public void queSoyUnClienteQueHaRealizadoUnaReserva() throws InterruptedException {
         this.usuario.attemptsTo(AbrirNavegador.at(Constantes.URL));
+        Thread.sleep(2000);
     }
 
     @When("accedo a la seccion de detalles de una reserva que no existe o no es mia")
-    public void accedoALaSeccionDeDetallesDeUnaReservaQueNoExisteONoEsMia() {
+    public void accedoALaSeccionDeDetallesDeUnaReservaQueNoExisteONoEsMia() throws InterruptedException {
         this.usuario.attemptsTo(AbrirNavegador.at(Constantes.URL + "/booking?bookingId=80"));
+        Thread.sleep(2000);
     }
 
     @Then("deberia ver un mensaje que me confirme que no se encontraron datos")
-    public void deberiaVerUnMensajeQueMeConfirmeQueNoSeEncontraronDatos() {
+    public void deberiaVerUnMensajeQueMeConfirmeQueNoSeEncontraronDatos() throws InterruptedException {
         this.usuario.attemptsTo(
                 VerificarMensajeReservaNoEncontrada.existe());
+        Thread.sleep(5000);
     }
 }

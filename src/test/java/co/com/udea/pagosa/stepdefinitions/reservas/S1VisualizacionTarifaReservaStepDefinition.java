@@ -20,7 +20,7 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import static net.serenitybdd.screenplay.actors.OnStage.setTheStage;
 
-public class VisualizacionTarifaReservaStepDefinition {
+public class S1VisualizacionTarifaReservaStepDefinition {
 
     @Managed(driver = "chrome", uniqueSession = true)
     WebDriver driver;
@@ -34,28 +34,30 @@ public class VisualizacionTarifaReservaStepDefinition {
     }
 
     @Given("que soy un cliente que ha realizado unas reservas")
-    public void queSoyUnClienteQueHaRealizadoUnasReservas() {
+    public void queSoyUnClienteQueHaRealizadoUnasReservas() throws InterruptedException {
         this.usuario.attemptsTo(AbrirNavegador.at(Constantes.URL));
     }
 
     @When("accedo a la seccion de detalles de la reserva")
-    public void accedoALaSeccionDeDetallesDeLaReserva() {
+    public void accedoALaSeccionDeDetallesDeLaReserva() throws InterruptedException {
         this.usuario.attemptsTo(
                 SeleccionarReserva.as("10-booking"),
                 Click.on(CargarReserva.BOTON_SIGUIENTE));
+        Thread.sleep(2000);
     }
 
     @Then("deberia ver la tarifa de la reserva")
-    public void deberiaVerLaTarifaDeLaReserva() {
+    public void deberiaVerLaTarifaDeLaReserva() throws InterruptedException {
         this.usuario.attemptsTo(
                 VerificarFechaReservaPrecioSinImpuestos.con("12/5/2023", "$330,000"));
+        Thread.sleep(4000);
     }
 
     @And("deberia ver los impuestos aplicados")
-    public void deberiaVerLosImpuestosAplicados() {
+    public void deberiaVerLosImpuestosAplicados() throws InterruptedException {
         this.usuario.attemptsTo(
-                VerificarImpuestosPrecioTotal.con("$392,700","$62,700"));
-
+                VerificarImpuestosPrecioTotal.con("$392,700", "$62,700"));
+        Thread.sleep(4000);
     }
 
 }

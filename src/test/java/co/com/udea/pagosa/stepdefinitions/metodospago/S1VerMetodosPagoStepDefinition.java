@@ -19,7 +19,7 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import static net.serenitybdd.screenplay.actors.OnStage.setTheStage;
 
-public class VerMetodosPagoStepDefinition {
+public class S1VerMetodosPagoStepDefinition {
 
     @Managed(driver = "chrome", uniqueSession = true)
     WebDriver driver;
@@ -33,21 +33,23 @@ public class VerMetodosPagoStepDefinition {
     }
 
     @Given("que soy un cliente que esta realizando una transaccions")
-    public void queSoyUnClienteQueEstaRealizandoUnaTransaccions() {
+    public void queSoyUnClienteQueEstaRealizandoUnaTransaccions() throws InterruptedException {
         this.usuario.attemptsTo(AbrirNavegador.at(Constantes.URL),
                 SeleccionarReserva.as("20-booking"),
                 Click.on(CargarReserva.BOTON_SIGUIENTE));
     }
 
     @When("llego al paso de seleccion de metodo de pago")
-    public void llegoAlPasoDeSeleccionDeMetodoDePago() {
+    public void llegoAlPasoDeSeleccionDeMetodoDePago() throws InterruptedException {
         usuario.attemptsTo(
                 Click.on(MetodosPago.LISTADO_METODOS_PAGO));
+        Thread.sleep(4000);
     }
 
     @Then("deberia ver al menos dos opciones de metodos de pago disponibles")
-    public void deberiaVerAlMenosDosOpcionesDeMetodosDePagoDisponibles() {
+    public void deberiaVerAlMenosDosOpcionesDeMetodosDePagoDisponibles() throws InterruptedException {
         usuario.attemptsTo(
                 ContarMetodosPago.dosOMas());
+        Thread.sleep(2000);
     }
 }

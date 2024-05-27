@@ -29,7 +29,7 @@ public class VerificarFechaReservaPrecioSinImpuestos implements Task {
         actor.should("Verifica si la fecha de la reserva y el precio sin impuestos son correctos",
                 seeThat(Text.of(InformacionReserva.FECHA_RESERVA),
                         Matchers.equalTo(this.esperadaFechaReserva)),
-                        seeThat(Text.of(InformacionReserva.PRECIO_SIN_IMPUESTOS),
+                seeThat(Text.of(InformacionReserva.PRECIO_SIN_IMPUESTOS),
                         Matchers.equalTo(this.esperadaPrecioSinImpuestos)));
     }
 }

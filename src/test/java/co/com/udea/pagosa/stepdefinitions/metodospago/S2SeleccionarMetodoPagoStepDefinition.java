@@ -21,8 +21,8 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import static net.serenitybdd.screenplay.actors.OnStage.setTheStage;
 
-public class SeleccionarMetodoPagoStepDefinition {
-    
+public class S2SeleccionarMetodoPagoStepDefinition {
+
     @Managed(driver = "chrome", uniqueSession = true)
     WebDriver driver;
 
@@ -35,35 +35,32 @@ public class SeleccionarMetodoPagoStepDefinition {
     }
 
     @Given("que soy un cliente que esta realizando una transaccion")
-    public void queSoyUnClienteQueEstaRealizandoUnaTransaccion() {
-        this.usuario.attemptsTo(AbrirNavegador.at(Constantes.URL), 
+    public void queSoyUnClienteQueEstaRealizandoUnaTransaccion() throws InterruptedException {
+        this.usuario.attemptsTo(AbrirNavegador.at(Constantes.URL),
                 SeleccionarReserva.as("20-booking"),
                 Click.on(CargarReserva.BOTON_SIGUIENTE));
     }
 
     @And("tengo al menos dos opciones de metodos de pago disponibles")
-    public void tengoAlMenosDosOpcionesDeMetodosDePagoDisponibles() {
+    public void tengoAlMenosDosOpcionesDeMetodosDePagoDisponibles() throws InterruptedException {
         usuario.attemptsTo(
-            Click.on(MetodosPago.LISTADO_METODOS_PAGO),
-            ContarMetodosPago.dosOMas()
-
-        );
+                Click.on(MetodosPago.LISTADO_METODOS_PAGO),
+                ContarMetodosPago.dosOMas());
+        Thread.sleep(4000);
     }
-    
+
     @When("selecciono un metodo de pago")
-    public void seleccionoUnMetodoDePago() {
+    public void seleccionoUnMetodoDePago() throws InterruptedException {
         usuario.attemptsTo(
-            AbrirNavegador.at(Constantes.URL+"/booking?bookingId=22"),
-            SeleccionarMetodoPago.as("0-tarjeta")
-        );
+                AbrirNavegador.at(Constantes.URL + "/booking?bookingId=22"),
+                SeleccionarMetodoPago.as("0-tarjeta"));
     }
 
     @Then("deberia ver la confirmacion de mi seleccion")
-    public void deberiaVerLaConfirmacionDeMiSeleccion() {
+    public void deberiaVerLaConfirmacionDeMiSeleccion() throws InterruptedException {
         usuario.attemptsTo(
-            ComprobarMetodoPago.conNombre("Tarjeta de cr\u00e9dito")
-        );
+                ComprobarMetodoPago.conNombre("Tarjeta de cr\u00e9dito"));
+        Thread.sleep(5000);
     }
 
-    
 }

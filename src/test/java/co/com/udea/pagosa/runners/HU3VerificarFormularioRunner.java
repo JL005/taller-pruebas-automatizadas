@@ -7,10 +7,10 @@ import net.serenitybdd.cucumber.CucumberWithSerenity;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        features = "src/test/resources/features/hu-2.feature",
-        glue = "co.com.udea.pagosa.stepdefinitions.metodospago",
+        features = "src/test/resources/features/hu-3.feature",
+        glue = "co.com.udea.pagosa.stepdefinitions.formulariospagos",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
-public class MetodoPagoReservaRunner {
+public class HU3VerificarFormularioRunner {
     
 }

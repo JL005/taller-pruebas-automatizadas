@@ -20,7 +20,7 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
 
-public class FalloPagoPaypalStepDefinition {
+public class S3FalloPagoPaypalStepDefinition {
 
     @Managed(driver = "chrome", uniqueSession = true)
     WebDriver driver;
@@ -35,23 +35,26 @@ public class FalloPagoPaypalStepDefinition {
     }
 
     @Given("que soy un usuario que ha ingresado datos incorrectos de mi cuenta de PayPal")
-    public void queSoyUnUsuarioQueHaIngresadoDatosIncorrectosDeMiCuentaDePayPal() {
+    public void queSoyUnUsuarioQueHaIngresadoDatosIncorrectosDeMiCuentaDePayPal() throws InterruptedException {
         this.usuario.attemptsTo(AbrirNavegador.at(Constantes.URL),
                 SeleccionarReserva.as("20-booking"),
-                Click.on(CargarReserva.BOTON_SIGUIENTE),
+                Click.on(CargarReserva.BOTON_SIGUIENTE));
+        Thread.sleep(2000);
+        this.usuario.attemptsTo(
                 SeleccionarMetodoPago.as("2-paypal"),
                 Click.on(CargarReserva.BOTON_SIGUIENTE),
                 LlenarFormularioPagoPaypal.conInfo(detallesCuenta));
+        Thread.sleep(2000);                
     }
 
     @When("intento realizar un pago con mi cuenta de PayPal")
-    public void intentoRealizarUnPagoConMiCuentaDePayPal() {
+    public void intentoRealizarUnPagoConMiCuentaDePayPal() throws InterruptedException {
         this.usuario.attemptsTo(Click.on(FormularioPagoPaypal.BOTON_PAGO),
                 VerificarSiElementoExiste.conCampos("payment-processing"));
     }
 
     @Then("deberia recibir un mensaje indicando que los datos son invalidos")
-    public void deberiaRecibirUnMensajeIndicandoQueLosDatosSonInvalidos() throws InterruptedException{
+    public void deberiaRecibirUnMensajeIndicandoQueLosDatosSonInvalidos() throws InterruptedException {
         Thread.sleep(4000);
         this.usuario.attemptsTo(VerificarSiElementoExiste.conCampos("payment-error"));
         Thread.sleep(4000);

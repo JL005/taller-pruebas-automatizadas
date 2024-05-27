@@ -17,7 +17,7 @@ import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
 import co.com.udea.pagosa.tasks.formulariopagos.VerificarSiElementoExiste;
 
-public class VerificarFormularioTarjetaStepDefinition {
+public class S2VerificarFormularioPaypalStepDefinition {
 
     @Managed(driver = "chrome", uniqueSession = true)
     WebDriver driver;
@@ -29,21 +29,26 @@ public class VerificarFormularioTarjetaStepDefinition {
         this.usuario.can(BrowseTheWeb.with(this.driver));
     }
 
-    @Given("que soy un cliente que esta realizando un pago con tarjeta")
-    public void queSoyUnClienteQueEstaRealizandoUnPagoConTarjeta() {
+    @Given("que soy un cliente que esta realizando un pago con paypal")
+    public void queSoyUnClienteQueEstaRealizandoUnPagoConPaypal() throws InterruptedException {
         this.usuario.attemptsTo(AbrirNavegador.at(Constantes.URL),
                 SeleccionarReserva.as("20-booking"),
                 Click.on(CargarReserva.BOTON_SIGUIENTE));
+        Thread.sleep(2000);
     }
 
-    @When("llego al paso de ingresar los datos del metodo de pago")
-    public void llegoAlPasoDeIngresarLosDatosDelMetodoDePago() {
-        this.usuario.attemptsTo(SeleccionarMetodoPago.as("0-tarjeta"),
+    @When("llego al paso de ingresar los datos de la cuenta de paypal")
+    public void llegoAlPasoDeIngresarLosDatosDeLaCuentaDePaypal() throws InterruptedException {
+        this.usuario.attemptsTo(SeleccionarMetodoPago.as("2-paypal"),
                 Click.on(CargarReserva.BOTON_SIGUIENTE));
+        Thread.sleep(1000);
+                
     }
 
-    @Then("deberia ver un formulario para ingresar los datos del metodo de pago")
-    public void deberiaVerUnFormularioParaIngresarLosDatosDelMetodoDePago() {
-        this.usuario.attemptsTo(VerificarSiElementoExiste.conCampos("debitcard", "date", "ccv", "name", "id"));
+    @Then("deberia ver un formulario para ingresar los datos de usuario y contrasena de paypal")
+    public void deberiaVerUnFormularioParaIngresarLosDatosDeUsuarioYContrasenaDePaypal() throws InterruptedException {
+        this.usuario.attemptsTo(VerificarSiElementoExiste.conCampos("email", "password"));
+        Thread.sleep(3000);
     }
+
 }

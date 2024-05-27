@@ -20,7 +20,7 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
 
-public class RealizarPagoPaypalStepDefinition {
+public class S2RealizarPagoPaypalStepDefinition {
 
     @Managed(driver = "chrome", uniqueSession = true)
     WebDriver driver;
@@ -35,18 +35,19 @@ public class RealizarPagoPaypalStepDefinition {
     }
 
     @Given("que soy un usuario que ha ingresado los datos correctos de mi cuenta de PayPal")
-    public void queSoyUnUsuarioQueHaIngresadoLosDatosCorrectosDeMiCuentaDePayPal() {
+    public void queSoyUnUsuarioQueHaIngresadoLosDatosCorrectosDeMiCuentaDePayPal() throws InterruptedException {
         this.usuario.attemptsTo(AbrirNavegador.at(Constantes.URL),
                 SeleccionarReserva.as("20-booking"),
-                Click.on(CargarReserva.BOTON_SIGUIENTE), 
-                SeleccionarMetodoPago.as("2-paypal"),
+                Click.on(CargarReserva.BOTON_SIGUIENTE));
+        Thread.sleep(2000);
+        this.usuario.attemptsTo(SeleccionarMetodoPago.as("2-paypal"),
                 Click.on(CargarReserva.BOTON_SIGUIENTE),
-                LlenarFormularioPagoPaypal.conInfo(detallesCuenta)
-                );
+                LlenarFormularioPagoPaypal.conInfo(detallesCuenta));
+       Thread.sleep(2000);
     }
 
     @When("intento realizar un pago con paypal")
-    public void intentoRealizarUnPagoConPaypal() {
+    public void intentoRealizarUnPagoConPaypal() throws InterruptedException {
         this.usuario.attemptsTo(Click.on(FormularioPagoPaypal.BOTON_PAGO),
                 VerificarSiElementoExiste.conCampos("payment-processing"));
     }
@@ -55,7 +56,7 @@ public class RealizarPagoPaypalStepDefinition {
     public void deberiaProcederAFinalizarElPagoConPaypal() throws InterruptedException {
         Thread.sleep(4000);
         this.usuario.attemptsTo(VerificarSiElementoExiste.conCampos("payment-success"));
-        Thread.sleep(10000);
+        Thread.sleep(9000);
     }
 
 }

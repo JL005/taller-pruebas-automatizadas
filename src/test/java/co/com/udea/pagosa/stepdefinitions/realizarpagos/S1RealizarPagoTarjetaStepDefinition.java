@@ -20,7 +20,7 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
 
-public class RealizarPagoTarjetaStepDefinition {
+public class S1RealizarPagoTarjetaStepDefinition {
 
     @Managed(driver = "chrome", uniqueSession = true)
     WebDriver driver;
@@ -35,18 +35,21 @@ public class RealizarPagoTarjetaStepDefinition {
     }
 
     @Given("que soy un usuario que ha ingresado los datos de mi tarjeta")
-    public void queSoyUnUsuarioQueHaIngresadoLosDatosDeMiTarjeta() {
+    public void queSoyUnUsuarioQueHaIngresadoLosDatosDeMiTarjeta() throws InterruptedException {
         this.usuario.attemptsTo(AbrirNavegador.at(Constantes.URL),
                 SeleccionarReserva.as("20-booking"),
-                Click.on(CargarReserva.BOTON_SIGUIENTE), 
-                SeleccionarMetodoPago.as("0-tarjeta"),
+                Click.on(CargarReserva.BOTON_SIGUIENTE));
+        Thread.sleep(2000);
+        this.usuario.attemptsTo(SeleccionarMetodoPago.as("0-tarjeta"),
                 Click.on(CargarReserva.BOTON_SIGUIENTE),
                 LlenarFormularioPagoTarjeta.conInfo(detallesPago));
+        Thread.sleep(2000);
     }
 
     @When("intento realizar un pago con tarjeta")
-    public void intentoRealizarUnPagoConTarjeta() {
+    public void intentoRealizarUnPagoConTarjeta() throws InterruptedException {
         this.usuario.attemptsTo(Click.on(FormularioPagoTarjeta.BOTON_PAGAR));
+        Thread.sleep(2000);
     }
 
     @Then("deberia proceder con el pago con tarjeta")

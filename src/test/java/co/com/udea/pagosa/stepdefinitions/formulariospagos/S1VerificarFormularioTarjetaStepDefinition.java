@@ -17,7 +17,7 @@ import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
 import co.com.udea.pagosa.tasks.formulariopagos.VerificarSiElementoExiste;
 
-public class VerificarFormularioPaypalStepDefinition {
+public class S1VerificarFormularioTarjetaStepDefinition {
 
     @Managed(driver = "chrome", uniqueSession = true)
     WebDriver driver;
@@ -29,22 +29,23 @@ public class VerificarFormularioPaypalStepDefinition {
         this.usuario.can(BrowseTheWeb.with(this.driver));
     }
 
-    @Given("que soy un cliente que esta realizando un pago con paypal")
-    public void queSoyUnClienteQueEstaRealizandoUnPagoConPaypal() {
+    @Given("que soy un cliente que esta realizando un pago con tarjeta")
+    public void queSoyUnClienteQueEstaRealizandoUnPagoConTarjeta() throws InterruptedException {
         this.usuario.attemptsTo(AbrirNavegador.at(Constantes.URL),
                 SeleccionarReserva.as("20-booking"),
                 Click.on(CargarReserva.BOTON_SIGUIENTE));
     }
 
-    @When("llego al paso de ingresar los datos de la cuenta de paypal")
-    public void llegoAlPasoDeIngresarLosDatosDeLaCuentaDePaypal() {
-        this.usuario.attemptsTo(SeleccionarMetodoPago.as("2-paypal"),
+    @When("llego al paso de ingresar los datos del metodo de pago")
+    public void llegoAlPasoDeIngresarLosDatosDelMetodoDePago() throws InterruptedException {
+        this.usuario.attemptsTo(SeleccionarMetodoPago.as("0-tarjeta"),
                 Click.on(CargarReserva.BOTON_SIGUIENTE));
+        Thread.sleep(1000);
     }
 
-    @Then("deberia ver un formulario para ingresar los datos de usuario y contrasena de paypal")
-    public void deberiaVerUnFormularioParaIngresarLosDatosDeUsuarioYContrasenaDePaypal() {
-        this.usuario.attemptsTo(VerificarSiElementoExiste.conCampos("email", "password"));
+    @Then("deberia ver un formulario para ingresar los datos del metodo de pago")
+    public void deberiaVerUnFormularioParaIngresarLosDatosDelMetodoDePago() throws InterruptedException {
+        this.usuario.attemptsTo(VerificarSiElementoExiste.conCampos("debitcard", "date", "ccv", "name", "id"));
+        Thread.sleep(5000);
     }
-
 }

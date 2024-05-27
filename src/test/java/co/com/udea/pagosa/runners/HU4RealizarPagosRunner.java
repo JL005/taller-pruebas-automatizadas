@@ -11,6 +11,6 @@ import net.serenitybdd.cucumber.CucumberWithSerenity;
         glue = "co.com.udea.pagosa.stepdefinitions.realizarpagos",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
-public class RealizarPagosRunner {
+public class HU4RealizarPagosRunner {
     
 }
